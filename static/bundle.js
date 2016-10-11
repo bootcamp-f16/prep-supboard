@@ -66,7 +66,7 @@
 	
 	var _sups2 = _interopRequireDefault(_sups);
 	
-	var _app = __webpack_require__(7);
+	var _app = __webpack_require__(11);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -31875,9 +31875,13 @@
 	
 	var _supsPage2 = _interopRequireDefault(_supsPage);
 	
+	var _supsList = __webpack_require__(8);
+	
+	var _supsList2 = _interopRequireDefault(_supsList);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var SupsModule = _angular2.default.module('app.sups', []).component('supsPage', _supsPage2.default);
+	var SupsModule = _angular2.default.module('app.sups', []).component('supsPage', _supsPage2.default).component('supsList', _supsList2.default);
 	
 	exports.default = SupsModule;
 
@@ -31895,10 +31899,16 @@
 	
 	var _supsPage2 = _interopRequireDefault(_supsPage);
 	
+	var _supsPage3 = __webpack_require__(7);
+	
+	var _supsPage4 = _interopRequireDefault(_supsPage3);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var supsPageComponent = {
-	    template: _supsPage2.default
+	    template: _supsPage2.default,
+	    controller: _supsPage4.default,
+	    controllerAs: 'supsPageCtrl'
 	};
 	
 	exports.default = supsPageComponent;
@@ -31907,10 +31917,33 @@
 /* 6 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"row\">\n    <div class=\"col-md-4\">\n        <div class=\"jumbotron\">\n            <h1>Sup</h1>\n            <p>\n                View the latest sups from around the world or add yours to the mix below.\n            </p>\n        </div>\n    </div>\n    <div class=\"col-md-8\">\n        <h2>\n            Latest Sups\n            <hr>\n        </h2>\n    </div>\n</div>"
+	module.exports = "<div class=\"row\">\n    <div class=\"col-md-4\">\n        <div class=\"jumbotron\">\n            <h1>Sup</h1>\n            <p>\n                View the latest sups from around the world or add yours to the mix below.\n            </p>\n        </div>\n    </div>\n    <div class=\"col-md-8\">\n        <h2>\n            Latest Sups\n            <hr>\n        </h2>\n\n        <sups-list sups=\"supsPageCtrl.sups\"></sups-list>\n    </div>\n</div>"
 
 /***/ },
 /* 7 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	function SupsPageController() {
+	    var ctrl = this;
+	    ctrl.sups = [{
+	        text: 'This is a test',
+	        created_date: Date.now()
+	    }, {
+	        text: 'Another test',
+	        created_date: Date.now()
+	    }];
+	}
+	
+	exports.default = SupsPageController;
+
+/***/ },
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31919,11 +31952,64 @@
 	    value: true
 	});
 	
-	var _app = __webpack_require__(8);
+	var _supsList = __webpack_require__(9);
+	
+	var _supsList2 = _interopRequireDefault(_supsList);
+	
+	var _supsList3 = __webpack_require__(10);
+	
+	var _supsList4 = _interopRequireDefault(_supsList3);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var supsListComponent = {
+	    template: _supsList2.default,
+	    bindings: {
+	        sups: '<'
+	    },
+	    controller: _supsList4.default,
+	    controllerAs: 'supListCtrl'
+	};
+	
+	exports.default = supsListComponent;
+
+/***/ },
+/* 9 */
+/***/ function(module, exports) {
+
+	module.exports = "<ul class=\"list-group\">\n    <li class=\"list-group-item\" ng-repeat=\"sup in supListCtrl.sups\">\n        {{ sup.text }}\n    </li>\n</ul>"
+
+/***/ },
+/* 10 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	function SupsListController() {
+	    var ctrl = this;
+	}
+	
+	exports.default = SupsListController;
+
+/***/ },
+/* 11 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _app = __webpack_require__(12);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _app3 = __webpack_require__(9);
+	var _app3 = __webpack_require__(13);
 	
 	var _app4 = _interopRequireDefault(_app3);
 	
@@ -31938,13 +32024,13 @@
 	exports.default = appComponent;
 
 /***/ },
-/* 8 */
+/* 12 */
 /***/ function(module, exports) {
 
 	module.exports = "<header>\n    <nav class=\"navbar navbar-inverse navbar-static-top\">\n        <div class=\"container-fluid\">\n            <div class=\"navbar-header\">\n                <span class=\"navbar-brand\">\n                    <i class=\"fa fa-thumbs-o-up\"></i> Supboard\n                </span>\n            </div>\n        </div>\n    </nav>\n</header>\n<div class=\"container-fluid\">\n    <sups-page></sups-page>\n</div>"
 
 /***/ },
-/* 9 */
+/* 13 */
 /***/ function(module, exports) {
 
 	"use strict";
