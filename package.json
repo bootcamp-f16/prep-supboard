@@ -1,8 +1,8 @@
 {
-  "name": "",
+  "name": "prep-supboard",
   "version": "1.0.0",
   "description": "",
-  "repository": "",
+  "repository": "https://github.com/bootcamp-f16/prep-supboard",
   "scripts": {
     "start": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1",
