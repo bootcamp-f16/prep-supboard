@@ -66,7 +66,7 @@
 	
 	var _sups2 = _interopRequireDefault(_sups);
 	
-	var _app = __webpack_require__(11);
+	var _app = __webpack_require__(13);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -31879,9 +31879,13 @@
 	
 	var _supsList2 = _interopRequireDefault(_supsList);
 	
+	var _supsItem = __webpack_require__(11);
+	
+	var _supsItem2 = _interopRequireDefault(_supsItem);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var SupsModule = _angular2.default.module('app.sups', []).component('supsPage', _supsPage2.default).component('supsList', _supsList2.default);
+	var SupsModule = _angular2.default.module('app.sups', []).component('supsPage', _supsPage2.default).component('supsList', _supsList2.default).component('supsItem', _supsItem2.default);
 	
 	exports.default = SupsModule;
 
@@ -31977,7 +31981,7 @@
 /* 9 */
 /***/ function(module, exports) {
 
-	module.exports = "<ul class=\"list-group\">\n    <li class=\"list-group-item\" ng-repeat=\"sup in supListCtrl.sups\">\n        {{ sup.text }}\n    </li>\n</ul>"
+	module.exports = "<sups-item \n    ng-repeat=\"sup in supListCtrl.sups\" \n    sup=\"sup\"\n/>\n"
 
 /***/ },
 /* 10 */
@@ -32005,11 +32009,43 @@
 	    value: true
 	});
 	
-	var _app = __webpack_require__(12);
+	var _supsItem = __webpack_require__(12);
+	
+	var _supsItem2 = _interopRequireDefault(_supsItem);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var supsItemComponent = {
+	    template: _supsItem2.default,
+	    bindings: {
+	        sup: '<'
+	    },
+	    controllerAs: 'supsItemCtrl'
+	};
+	
+	exports.default = supsItemComponent;
+
+/***/ },
+/* 12 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"panel panel-default panel-lg\">\n    <div class=\"panel-body\">\n        {{supsItemCtrl.sup.text}}\n    </div>\n    <div class=\"panel-footer clearfix\">\n        <div class=\"pull-right\">\n            {{supsItemCtrl.sup.created_date | date:'medium'}}\n        </div>\n    </div>\n</div>"
+
+/***/ },
+/* 13 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _app = __webpack_require__(14);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _app3 = __webpack_require__(13);
+	var _app3 = __webpack_require__(15);
 	
 	var _app4 = _interopRequireDefault(_app3);
 	
@@ -32024,13 +32060,13 @@
 	exports.default = appComponent;
 
 /***/ },
-/* 12 */
+/* 14 */
 /***/ function(module, exports) {
 
 	module.exports = "<header>\n    <nav class=\"navbar navbar-inverse navbar-static-top\">\n        <div class=\"container-fluid\">\n            <div class=\"navbar-header\">\n                <span class=\"navbar-brand\">\n                    <i class=\"fa fa-thumbs-o-up\"></i> Supboard\n                </span>\n            </div>\n        </div>\n    </nav>\n</header>\n<div class=\"container-fluid\">\n    <sups-page></sups-page>\n</div>"
 
 /***/ },
-/* 13 */
+/* 15 */
 /***/ function(module, exports) {
 
 	"use strict";
