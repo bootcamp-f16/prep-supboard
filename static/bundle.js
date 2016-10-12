@@ -32934,7 +32934,7 @@
 /* 13 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"row\">\n    <div class=\"col-md-4\">\n        <div class=\"jumbotron\">\n            <h1>Sup</h1>\n            <p>\n                View the latest sups from around the world or add yours to the mix below.\n            </p>\n            <sups-edit\n                sup=\"supsPageCtrl.supToEdit\"\n                save=\"supsPageCtrl.saveSup(sup)\"\n            />\n        </div>\n    </div>\n    <div class=\"col-md-8\">\n        <h2>\n            Latest Sups\n            <hr>\n        </h2>\n\n        <sups-item \n            ng-repeat=\"sup in supsPageCtrl.sups track by sup.id\" \n            sup=\"sup\"\n            save=\"supsPageCtrl.saveSup(sup)\"\n        />\n    </div>\n</div>"
+	module.exports = "<div class=\"row\">\n    <div class=\"col-md-4\">\n        <div class=\"jumbotron\">\n            <h1>Sup</h1>\n            <p>\n                View the latest sups from around the world or add yours to the mix below.\n            </p>\n            <sups-edit\n                sup=\"supsPageCtrl.supToEdit\"\n                save=\"supsPageCtrl.saveSup(sup)\"\n            />\n        </div>\n    </div>\n    <div class=\"col-md-8\">\n        <h2>\n            Latest Sups\n            <hr>\n        </h2>\n\n        <sups-item \n            ng-repeat=\"sup in supsPageCtrl.sups track by sup.id\" \n            sup=\"sup\"\n            save=\"supsPageCtrl.saveSup(sup)\"\n            delete=\"supsPageCtrl.deleteSup(sup)\"\n        />\n    </div>\n</div>"
 
 /***/ },
 /* 14 */
@@ -32988,6 +32988,19 @@
 	                flashesService.displayMessage('Sup created!', 'success');
 	            });
 	        }
+	    };
+	
+	    ctrl.deleteSup = function (sup) {
+	        var index = (0, _ramda.findIndex)(function (item) {
+	            return sup.id === item.id;
+	        })(ctrl.sups);
+	        if (index !== -1) {
+	            ctrl.sups.splice(index, 1);
+	        }
+	
+	        supsAPIService.sups.delete({ id: sup.id }).$promise.then(function () {
+	            flashesService.displayMessage('Sup deleted!', 'success');
+	        });
 	    };
 	}
 	
@@ -41854,7 +41867,8 @@
 	    template: _supsItem2.default,
 	    bindings: {
 	        sup: '<',
-	        save: '&'
+	        save: '&',
+	        delete: '&'
 	    },
 	    controller: _supsItem4.default,
 	    controllerAs: 'supsItemCtrl'
@@ -41866,7 +41880,7 @@
 /* 17 */
 /***/ function(module, exports) {
 
-	module.exports = "<div \n    class=\"panel panel-default panel-lg sups-item\"\n    ng-mouseover=\"supsItemCtrl.setShowControls(true)\"\n    ng-mouseout=\"supsItemCtrl.setShowControls(false)\"\n>\n    <div class=\"panel-body\">\n        <p class=\"lead\" ng-show=\"!supsItemCtrl.editMode\">\n            {{supsItemCtrl.sup.text}}\n        </p>\n        <sups-edit\n            ng-show=\"supsItemCtrl.editMode\"\n            sup=\"supsItemCtrl.supToEdit\"\n            save=\"supsItemCtrl.editSup(sup)\"\n            cancel=\"supsItemCtrl.setEditMode(false)\"\n        />\n    </div>\n    <div class=\"panel-footer clearfix\">\n        <div class=\"pull-right\">\n            {{supsItemCtrl.sup.created_date | date:'medium'}}\n        </div>\n        <div\n            class=\"sups-item-controls\"\n            ng-show=\"supsItemCtrl.showControls\"\n        >\n            <button class=\"btn-default\" ng-click=\"supsItemCtrl.setEditMode(true)\">\n                <i class=\"fa fa-pencil-square-o\"></i>\n            </button>\n        </div>\n    </div>\n</div>"
+	module.exports = "<div \n    class=\"panel panel-default panel-lg sups-item\"\n    ng-mouseover=\"supsItemCtrl.setShowControls(true)\"\n    ng-mouseout=\"supsItemCtrl.setShowControls(false)\"\n>\n    <div class=\"panel-body\">\n        <p class=\"lead\" ng-show=\"!supsItemCtrl.editMode\">\n            {{supsItemCtrl.sup.text}}\n        </p>\n        <sups-edit\n            ng-show=\"supsItemCtrl.editMode\"\n            sup=\"supsItemCtrl.supToEdit\"\n            save=\"supsItemCtrl.editSup(sup)\"\n            cancel=\"supsItemCtrl.setEditMode(false)\"\n        />\n    </div>\n    <div class=\"panel-footer clearfix\">\n        <div class=\"pull-right\">\n            {{supsItemCtrl.sup.created_date | date:'medium'}}\n        </div>\n        <div\n            class=\"sups-item-controls\"\n            ng-show=\"supsItemCtrl.showControls\"\n        >\n            <button class=\"btn btn-default\" ng-click=\"supsItemCtrl.setEditMode(true)\">\n                <i class=\"fa fa-pencil-square-o\"></i>\n            </button>\n            <button class=\"btn btn-danger\" ng-click=\"supsItemCtrl.deleteSup()\">\n                <i class=\"fa fa-trash-o\"></i>\n            </button>\n        </div>\n    </div>\n</div>"
 
 /***/ },
 /* 18 */
@@ -41899,6 +41913,10 @@
 	    ctrl.editSup = function (sup) {
 	        ctrl.save({ sup: sup });
 	        ctrl.editMode = false;
+	    };
+	
+	    ctrl.deleteSup = function () {
+	        ctrl.delete({ sup: ctrl.sup });
 	    };
 	}
 	

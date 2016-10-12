@@ -36,6 +36,17 @@ function SupsPageController(supsAPIService, flashesService, $interval) {
             });
         }
     };
+
+    ctrl.deleteSup = (sup) => {
+        const index = findIndex(item => sup.id === item.id)(ctrl.sups);
+        if (index !== -1) {
+            ctrl.sups.splice(index, 1);
+        }
+
+        supsAPIService.sups.delete({ id: sup.id }).$promise.then(() => {
+            flashesService.displayMessage('Sup deleted!', 'success');
+        });
+    };
 }
 
 export default SupsPageController;

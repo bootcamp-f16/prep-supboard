@@ -20,6 +20,10 @@ function SupsItemController() {
         ctrl.save({ sup });
         ctrl.editMode = false;
     };
+
+    ctrl.deleteSup = () => {
+        ctrl.delete({ sup: ctrl.sup });
+    };
 }
 
 export default SupsItemController;

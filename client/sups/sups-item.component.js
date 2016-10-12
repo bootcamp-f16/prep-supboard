@@ -7,6 +7,7 @@ const supsItemComponent = {
     bindings: {
         sup: '<',
         save: '&',
+        delete: '&',
     },
     controller: SupsItemController,
     controllerAs: 'supsItemCtrl',
