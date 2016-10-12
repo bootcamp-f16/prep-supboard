@@ -31891,7 +31891,9 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var SupsModule = _angular2.default.module('app.sups', ['ngResource']).component('supsPage', _supsPage2.default).component('supsItem', _supsItem2.default).component('supsEdit', _supsEdit2.default).factory('supsAPIService', _supsApi2.default);
+	var SupsModule = _angular2.default.module('app.sups', ['ngResource']).config(function ($resourceProvider) {
+	    $resourceProvider.defaults.stripTrailingSlashes = false;
+	}).component('supsPage', _supsPage2.default).component('supsItem', _supsItem2.default).component('supsEdit', _supsEdit2.default).factory('supsAPIService', _supsApi2.default);
 	
 	exports.default = SupsModule;
 
@@ -32804,7 +32806,7 @@
 /* 8 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"row\">\n    <div class=\"col-md-4\">\n        <div class=\"jumbotron\">\n            <h1>Sup</h1>\n            <p>\n                View the latest sups from around the world or add yours to the mix below.\n            </p>\n            <sups-edit \n                save=\"supsPageCtrl.saveSup(sup)\"\n            />\n        </div>\n    </div>\n    <div class=\"col-md-8\">\n        <h2>\n            Latest Sups\n            <hr>\n        </h2>\n\n        <sups-item \n            ng-repeat=\"sup in supsPageCtrl.sups\" \n            sup=\"sup\"\n        />\n    </div>\n</div>"
+	module.exports = "<div class=\"row\">\n    <div class=\"col-md-4\">\n        <div class=\"jumbotron\">\n            <h1>Sup</h1>\n            <p>\n                View the latest sups from around the world or add yours to the mix below.\n            </p>\n            <sups-edit\n                sup=\"supsPageCtrl.supToEdit\"\n                save=\"supsPageCtrl.saveSup(sup)\"\n            />\n        </div>\n    </div>\n    <div class=\"col-md-8\">\n        <h2>\n            Latest Sups\n            <hr>\n        </h2>\n\n        <sups-item \n            ng-repeat=\"sup in supsPageCtrl.sups\" \n            sup=\"sup\"\n        />\n    </div>\n</div>"
 
 /***/ },
 /* 9 */
@@ -32818,6 +32820,7 @@
 	
 	function SupsPageController(supsAPIService, $interval) {
 	    var ctrl = this;
+	    ctrl.supToEdit = {};
 	
 	    function getSups() {
 	        supsAPIService.sups.get({}).$promise.then(function (data) {
@@ -32829,7 +32832,9 @@
 	    $interval(getSups, 5000);
 	
 	    ctrl.saveSup = function saveSup(sup) {
-	        alert(sup.text);
+	        supsAPIService.sups.save(sup).$promise.then(function () {
+	            ctrl.supToEdit = {};
+	        });
 	    };
 	}
 	
@@ -32921,7 +32926,7 @@
 	    var ctrl = this;
 	    ctrl.editedSup = {};
 	
-	    ctrl.$OnChanges = function $OnChanges() {
+	    ctrl.$onChanges = function $onChanges() {
 	        ctrl.editedSup = (0, _ramda.merge)({}, ctrl.sup);
 	    };
 	

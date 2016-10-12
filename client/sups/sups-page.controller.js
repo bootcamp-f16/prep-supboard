@@ -1,6 +1,7 @@
 
 function SupsPageController(supsAPIService, $interval) {
     const ctrl = this;
+    ctrl.supToEdit = {};
 
     function getSups() {
         supsAPIService.sups.get({}).$promise
@@ -13,7 +14,9 @@ function SupsPageController(supsAPIService, $interval) {
     $interval(getSups, 5000);
 
     ctrl.saveSup = function saveSup(sup) {
-        alert(sup.text);
+        supsAPIService.sups.save(sup).$promise.then(() => {
+            ctrl.supToEdit = {};
+        });
     };
 }
 

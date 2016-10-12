@@ -4,7 +4,7 @@ function SupEditController() {
     const ctrl = this;
     ctrl.editedSup = {};
 
-    ctrl.$OnChanges = function $OnChanges() {
+    ctrl.$onChanges = function $onChanges() {
         ctrl.editedSup = merge({}, ctrl.sup);
     };
 
