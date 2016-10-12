@@ -31972,7 +31972,7 @@
 /* 9 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"panel panel-default panel-lg\">\n    <div class=\"panel-body\">\n        {{supsItemCtrl.sup.text}}\n    </div>\n    <div class=\"panel-footer clearfix\">\n        <div class=\"pull-right\">\n            {{supsItemCtrl.sup.created_date | date:'medium'}}\n        </div>\n    </div>\n</div>"
+	module.exports = "<div class=\"panel panel-default panel-lg\">\n    <div class=\"panel-body\">\n        <p class=\"lead\">\n            {{supsItemCtrl.sup.text}}\n        </p>\n    </div>\n    <div class=\"panel-footer clearfix\">\n        <div class=\"pull-right\">\n            {{supsItemCtrl.sup.created_date | date:'medium'}}\n        </div>\n    </div>\n</div>"
 
 /***/ },
 /* 10 */
