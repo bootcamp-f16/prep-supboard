@@ -14,8 +14,12 @@ function SupsPageController(supsAPIService, $interval) {
     $interval(getSups, 5000);
 
     ctrl.saveSup = function saveSup(sup) {
-        supsAPIService.sups.save(sup).$promise.then(() => {
+        supsAPIService.sups.save(sup).$promise.then((data) => {
             ctrl.supToEdit = {};
+            ctrl.sups = [
+                data,
+                ...ctrl.sups,
+            ];
         });
     };
 }

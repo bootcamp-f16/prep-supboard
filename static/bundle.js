@@ -32818,6 +32818,8 @@
 	    value: true
 	});
 	
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+	
 	function SupsPageController(supsAPIService, $interval) {
 	    var ctrl = this;
 	    ctrl.supToEdit = {};
@@ -32832,8 +32834,9 @@
 	    $interval(getSups, 5000);
 	
 	    ctrl.saveSup = function saveSup(sup) {
-	        supsAPIService.sups.save(sup).$promise.then(function () {
+	        supsAPIService.sups.save(sup).$promise.then(function (data) {
 	            ctrl.supToEdit = {};
+	            ctrl.sups = [data].concat(_toConsumableArray(ctrl.sups));
 	        });
 	    };
 	}
