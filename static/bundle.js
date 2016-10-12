@@ -32934,7 +32934,7 @@
 /* 13 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"row\">\n    <div class=\"col-md-4\">\n        <div class=\"jumbotron\">\n            <h1>Sup</h1>\n            <p>\n                View the latest sups from around the world or add yours to the mix below.\n            </p>\n            <sups-edit\n                sup=\"supsPageCtrl.supToEdit\"\n                save=\"supsPageCtrl.saveSup(sup)\"\n            />\n        </div>\n    </div>\n    <div class=\"col-md-8\">\n        <h2>\n            Latest Sups\n            <hr>\n        </h2>\n\n        <sups-item \n            ng-repeat=\"sup in supsPageCtrl.sups track by sup.id\" \n            sup=\"sup\"\n        />\n    </div>\n</div>"
+	module.exports = "<div class=\"row\">\n    <div class=\"col-md-4\">\n        <div class=\"jumbotron\">\n            <h1>Sup</h1>\n            <p>\n                View the latest sups from around the world or add yours to the mix below.\n            </p>\n            <sups-edit\n                sup=\"supsPageCtrl.supToEdit\"\n                save=\"supsPageCtrl.saveSup(sup)\"\n            />\n        </div>\n    </div>\n    <div class=\"col-md-8\">\n        <h2>\n            Latest Sups\n            <hr>\n        </h2>\n\n        <sups-item \n            ng-repeat=\"sup in supsPageCtrl.sups track by sup.id\" \n            sup=\"sup\"\n            save=\"supsPageCtrl.saveSup(sup)\"\n        />\n    </div>\n</div>"
 
 /***/ },
 /* 14 */
@@ -32996,7 +32996,8 @@
 	var supsItemComponent = {
 	    template: _supsItem2.default,
 	    bindings: {
-	        sup: '<'
+	        sup: '<',
+	        save: '&'
 	    },
 	    controller: _supsItem4.default,
 	    controllerAs: 'supsItemCtrl'
@@ -33008,7 +33009,7 @@
 /* 16 */
 /***/ function(module, exports) {
 
-	module.exports = "<div \n    class=\"panel panel-default panel-lg sups-item\"\n    ng-mouseover=\"supsItemCtrl.setShowControls(true)\"\n    ng-mouseout=\"supsItemCtrl.setShowControls(false)\"\n>\n    <div class=\"panel-body\">\n        <p class=\"lead\" ng-show=\"!supsItemCtrl.editMode\">\n            {{supsItemCtrl.sup.text}}\n        </p>\n        <sups-edit\n            ng-show=\"supsItemCtrl.editMode\"\n            sup=\"supsItemCtrl.sup\"\n            cancel=\"supsItemCtrl.setEditMode(false)\"\n        />\n    </div>\n    <div class=\"panel-footer clearfix\">\n        <div class=\"pull-right\">\n            {{supsItemCtrl.sup.created_date | date:'medium'}}\n        </div>\n        <div\n            class=\"sups-item-controls\"\n            ng-show=\"supsItemCtrl.showControls\"\n        >\n            <button class=\"btn-default\" ng-click=\"supsItemCtrl.setEditMode(true)\">\n                <i class=\"fa fa-pencil-square-o\"></i>\n            </button>\n        </div>\n    </div>\n</div>"
+	module.exports = "<div \n    class=\"panel panel-default panel-lg sups-item\"\n    ng-mouseover=\"supsItemCtrl.setShowControls(true)\"\n    ng-mouseout=\"supsItemCtrl.setShowControls(false)\"\n>\n    <div class=\"panel-body\">\n        <p class=\"lead\" ng-show=\"!supsItemCtrl.editMode\">\n            {{supsItemCtrl.sup.text}}\n        </p>\n        <sups-edit\n            ng-show=\"supsItemCtrl.editMode\"\n            sup=\"supsItemCtrl.sup\"\n            save=\"supsItemCtrl.save({sup:sup})\"\n            cancel=\"supsItemCtrl.setEditMode(false)\"\n        />\n    </div>\n    <div class=\"panel-footer clearfix\">\n        <div class=\"pull-right\">\n            {{supsItemCtrl.sup.created_date | date:'medium'}}\n        </div>\n        <div\n            class=\"sups-item-controls\"\n            ng-show=\"supsItemCtrl.showControls\"\n        >\n            <button class=\"btn-default\" ng-click=\"supsItemCtrl.setEditMode(true)\">\n                <i class=\"fa fa-pencil-square-o\"></i>\n            </button>\n        </div>\n    </div>\n</div>"
 
 /***/ },
 /* 17 */
@@ -33074,7 +33075,7 @@
 /* 19 */
 /***/ function(module, exports) {
 
-	module.exports = "<form ng-submit=\"supEditCtrl.saveSup()\">\n    <div class=\"form-group\">\n        <label class=\"sr-only\" for=\"sup-input\">\n            Sup text\n        </label>\n        <textarea ng-model=\"supEditCtrl.editedSup.text\" class=\"form-control\" id=\"sup-input\"></textarea>\n    </div>\n    <button class=\"btn btn-primary\" \n        ng-disabled=\"!supEditCtrl.editedSup.text\"\n        type=\"submit\"\n    >\n        Save sup\n    </button>\n    <button class=\"btn btn-danger\" \n        ng-show=\"supEditCtrl.cancel\"\n        ng-click=\"supEditCtrl.cancel()\"\n    >\n        Cancel\n    </button>\n</form>"
+	module.exports = "<form ng-submit=\"supEditCtrl.saveSup()\">\n    <div class=\"form-group\">\n        <label class=\"sr-only\" for=\"sup-input\">\n            Sup text\n        </label>\n        <textarea ng-model=\"supEditCtrl.editedSup.text\" class=\"form-control\" id=\"sup-input\"></textarea>\n    </div>\n    <button class=\"btn btn-primary\" \n        ng-disabled=\"!supEditCtrl.editedSup.text\"\n        type=\"submit\"\n    >\n        Save sup\n    </button>\n    <button class=\"btn btn-danger\" \n        ng-show=\"supEditCtrl.cancel\"\n        ng-click=\"supEditCtrl.cancel()\"\n        type=\"button\"\n    >\n        Cancel\n    </button>\n</form>"
 
 /***/ },
 /* 20 */

@@ -6,6 +6,7 @@ const supsItemComponent = {
     template,
     bindings: {
         sup: '<',
+        save: '&',
     },
     controller: SupsItemController,
     controllerAs: 'supsItemCtrl',

@@ -20,6 +20,7 @@
         <sups-item 
             ng-repeat="sup in supsPageCtrl.sups track by sup.id" 
             sup="sup"
+            save="supsPageCtrl.saveSup(sup)"
         />
     </div>
 </div>
