@@ -22,8 +22,11 @@
             class="sups-item-controls"
             ng-show="supsItemCtrl.showControls"
         >
-            <button class="btn-default" ng-click="supsItemCtrl.setEditMode(true)">
+            <button class="btn btn-default" ng-click="supsItemCtrl.setEditMode(true)">
                 <i class="fa fa-pencil-square-o"></i>
+            </button>
+            <button class="btn btn-danger" ng-click="supsItemCtrl.deleteSup()">
+                <i class="fa fa-trash-o"></i>
             </button>
         </div>
     </div>
