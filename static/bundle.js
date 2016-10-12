@@ -66,7 +66,7 @@
 	
 	var _sups2 = _interopRequireDefault(_sups);
 	
-	var _app = __webpack_require__(13);
+	var _app = __webpack_require__(16);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -31881,13 +31881,17 @@
 	
 	var _supsItem2 = _interopRequireDefault(_supsItem);
 	
-	var _supsApi = __webpack_require__(12);
+	var _supsEdit = __webpack_require__(12);
+	
+	var _supsEdit2 = _interopRequireDefault(_supsEdit);
+	
+	var _supsApi = __webpack_require__(15);
 	
 	var _supsApi2 = _interopRequireDefault(_supsApi);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var SupsModule = _angular2.default.module('app.sups', ['ngResource']).component('supsPage', _supsPage2.default).component('supsItem', _supsItem2.default).factory('supsAPIService', _supsApi2.default);
+	var SupsModule = _angular2.default.module('app.sups', ['ngResource']).component('supsPage', _supsPage2.default).component('supsItem', _supsItem2.default).component('supsEdit', _supsEdit2.default).factory('supsAPIService', _supsApi2.default);
 	
 	exports.default = SupsModule;
 
@@ -32800,7 +32804,7 @@
 /* 8 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"row\">\n    <div class=\"col-md-4\">\n        <div class=\"jumbotron\">\n            <h1>Sup</h1>\n            <p>\n                View the latest sups from around the world or add yours to the mix below.\n            </p>\n        </div>\n    </div>\n    <div class=\"col-md-8\">\n        <h2>\n            Latest Sups\n            <hr>\n        </h2>\n\n        <sups-item \n            ng-repeat=\"sup in supsPageCtrl.sups\" \n            sup=\"sup\"\n        />\n    </div>\n</div>"
+	module.exports = "<div class=\"row\">\n    <div class=\"col-md-4\">\n        <div class=\"jumbotron\">\n            <h1>Sup</h1>\n            <p>\n                View the latest sups from around the world or add yours to the mix below.\n            </p>\n            <sups-edit />\n        </div>\n    </div>\n    <div class=\"col-md-8\">\n        <h2>\n            Latest Sups\n            <hr>\n        </h2>\n\n        <sups-item \n            ng-repeat=\"sup in supsPageCtrl.sups\" \n            sup=\"sup\"\n        />\n    </div>\n</div>"
 
 /***/ },
 /* 9 */
@@ -32861,6 +32865,62 @@
 
 /***/ },
 /* 12 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _supsEdit = __webpack_require__(13);
+	
+	var _supsEdit2 = _interopRequireDefault(_supsEdit);
+	
+	var _supsEdit3 = __webpack_require__(14);
+	
+	var _supsEdit4 = _interopRequireDefault(_supsEdit3);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var supsEditComponent = {
+	    template: _supsEdit2.default,
+	    controller: _supsEdit4.default,
+	    controllerAs: 'supEditCtrl'
+	};
+	
+	exports.default = supsEditComponent;
+
+/***/ },
+/* 13 */
+/***/ function(module, exports) {
+
+	module.exports = "<form ng-submit=\"supEditCtrl.saveSup()\">\n    <div class=\"form-group\">\n        <label class=\"sr-only\" for=\"sup-input\">\n            Sup text\n        </label>\n        <textarea ng-model=\"supEditCtrl.sup.text\" class=\"form-control\" id=\"sup-input\"></textarea>\n    </div>\n    <button class=\"btn btn-primary\" type=\"submit\">\n        Add your sup\n    </button>\n</form>"
+
+/***/ },
+/* 14 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	function SupEditController() {
+	    var ctrl = this;
+	
+	    ctrl.editSup = {
+	        name: ''
+	    };
+	
+	    ctrl.saveSup = function saveSup() {};
+	}
+	
+	exports.default = SupEditController;
+
+/***/ },
+/* 15 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -32882,7 +32942,7 @@
 	exports.default = supsAPIService;
 
 /***/ },
-/* 13 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -32891,11 +32951,11 @@
 	    value: true
 	});
 	
-	var _app = __webpack_require__(14);
+	var _app = __webpack_require__(17);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _app3 = __webpack_require__(15);
+	var _app3 = __webpack_require__(18);
 	
 	var _app4 = _interopRequireDefault(_app3);
 	
@@ -32910,13 +32970,13 @@
 	exports.default = appComponent;
 
 /***/ },
-/* 14 */
+/* 17 */
 /***/ function(module, exports) {
 
 	module.exports = "<header>\n    <nav class=\"navbar navbar-inverse navbar-static-top\">\n        <div class=\"container-fluid\">\n            <div class=\"navbar-header\">\n                <span class=\"navbar-brand\">\n                    <i class=\"fa fa-thumbs-o-up\"></i> Supboard\n                </span>\n            </div>\n        </div>\n    </nav>\n</header>\n<div class=\"container-fluid\">\n    <sups-page></sups-page>\n</div>"
 
 /***/ },
-/* 15 */
+/* 18 */
 /***/ function(module, exports) {
 
 	"use strict";
