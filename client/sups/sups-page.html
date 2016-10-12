@@ -13,6 +13,9 @@
             <hr>
         </h2>
 
-        <sups-list sups="supsPageCtrl.sups"></sups-list>
+        <sups-item 
+            ng-repeat="sup in supsPageCtrl.sups" 
+            sup="sup"
+        />
     </div>
 </div>
