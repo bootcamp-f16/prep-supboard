@@ -31875,17 +31875,13 @@
 	
 	var _supsPage2 = _interopRequireDefault(_supsPage);
 	
-	var _supsList = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./sups-list.component\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-	
-	var _supsList2 = _interopRequireDefault(_supsList);
-	
 	var _supsItem = __webpack_require__(8);
 	
 	var _supsItem2 = _interopRequireDefault(_supsItem);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var SupsModule = _angular2.default.module('app.sups', []).component('supsPage', _supsPage2.default).component('supsList', _supsList2.default).component('supsItem', _supsItem2.default);
+	var SupsModule = _angular2.default.module('app.sups', []).component('supsPage', _supsPage2.default).component('supsItem', _supsItem2.default);
 	
 	exports.default = SupsModule;
 
