@@ -9,8 +9,8 @@
         </p>
         <sups-edit
             ng-show="supsItemCtrl.editMode"
-            sup="supsItemCtrl.sup"
-            save="supsItemCtrl.save({sup:sup})"
+            sup="supsItemCtrl.supToEdit"
+            save="supsItemCtrl.editSup(sup)"
             cancel="supsItemCtrl.setEditMode(false)"
         />
     </div>

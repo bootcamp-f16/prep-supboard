@@ -1,3 +1,5 @@
+import angular from 'angular';
+import { findIndex } from 'ramda';
 
 function SupsPageController(supsAPIService, flashesService, $interval) {
     const ctrl = this;
@@ -14,15 +16,25 @@ function SupsPageController(supsAPIService, flashesService, $interval) {
     $interval(getSups, 5000);
 
     ctrl.saveSup = function saveSup(sup) {
-        supsAPIService.sups.save(sup).$promise.then((data) => {
-            ctrl.supToEdit = {};
-            ctrl.sups = [
-                data,
-                ...ctrl.sups,
-            ];
+        if (sup.id) {
+            const index = findIndex(item => sup.id === item.id)(ctrl.sups);
+            if (index !== -1) {
+                angular.copy(sup, ctrl.sups[index]);
+            }
+            supsAPIService.sups.update(sup).$promise.then(() => {
+                flashesService.displayMessage('Sup updated!', 'success');
+            });
+        } else {
+            supsAPIService.sups.save(sup).$promise.then((data) => {
+                ctrl.supToEdit = {};
+                ctrl.sups = [
+                    data,
+                    ...ctrl.sups,
+                ];
 
-            flashesService.displayMessage('Sup created!', 'success');
-        });
+                flashesService.displayMessage('Sup created!', 'success');
+            });
+        }
     };
 }
 
