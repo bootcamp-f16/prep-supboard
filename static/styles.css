@@ -1,3 +1,7 @@
 .flashes-row {
     min-height: 76px;
 }
+
+.sups-item .panel-footer {
+    min-height: 50px;
+}

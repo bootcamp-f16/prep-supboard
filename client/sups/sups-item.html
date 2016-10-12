@@ -1,12 +1,30 @@
-<div class="panel panel-default panel-lg">
+<div 
+    class="panel panel-default panel-lg sups-item"
+    ng-mouseover="supsItemCtrl.setShowControls(true)"
+    ng-mouseout="supsItemCtrl.setShowControls(false)"
+>
     <div class="panel-body">
-        <p class="lead">
+        <p class="lead" ng-show="!supsItemCtrl.editMode">
             {{supsItemCtrl.sup.text}}
         </p>
+        <sups-edit
+            ng-show="supsItemCtrl.editMode"
+            sup="supsItemCtrl.supToEdit"
+            save="supsItemCtrl.editSup(sup)"
+            cancel="supsItemCtrl.setEditMode(false)"
+        />
     </div>
     <div class="panel-footer clearfix">
         <div class="pull-right">
             {{supsItemCtrl.sup.created_date | date:'medium'}}
+        </div>
+        <div
+            class="sups-item-controls"
+            ng-show="supsItemCtrl.showControls"
+        >
+            <button class="btn-default" ng-click="supsItemCtrl.setEditMode(true)">
+                <i class="fa fa-pencil-square-o"></i>
+            </button>
         </div>
     </div>
 </div>
