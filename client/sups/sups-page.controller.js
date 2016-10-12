@@ -11,6 +11,10 @@ function SupsPageController(supsAPIService, $interval) {
     getSups();
 
     $interval(getSups, 5000);
+
+    ctrl.saveSup = function saveSup(sup) {
+        alert(sup.text);
+    };
 }
 
 export default SupsPageController;

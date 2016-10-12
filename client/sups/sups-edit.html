@@ -3,9 +3,12 @@
         <label class="sr-only" for="sup-input">
             Sup text
         </label>
-        <textarea ng-model="supEditCtrl.sup.text" class="form-control" id="sup-input"></textarea>
+        <textarea ng-model="supEditCtrl.editedSup.text" class="form-control" id="sup-input"></textarea>
     </div>
-    <button class="btn btn-primary" type="submit">
+    <button class="btn btn-primary" 
+        ng-disabled="!supEditCtrl.editedSup.text"
+        type="submit"
+    >
         Add your sup
     </button>
 </form>
