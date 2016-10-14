@@ -1,5 +1,7 @@
 import angular from 'angular';
 import 'angular-resource';
+import 'angular-animate';
+
 
 import FlashesModule from '../flashes/flashes.module';
 
@@ -11,6 +13,7 @@ import supsAPIService from './sups-api.service';
 
 const SupsModule = angular.module('app.sups', [
     'ngResource',
+    'ngAnimate',
     FlashesModule.name,
 
 ]).config(($resourceProvider) => {
